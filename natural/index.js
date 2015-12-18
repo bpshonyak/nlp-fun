@@ -1,3 +1,7 @@
+var natural = require('natural');
+
+console.log(natural.PorterStemmer.stem("words"));
+
 var wordnet = new natural.WordNet();
 
 wordnet.lookup('node', function(results) {
