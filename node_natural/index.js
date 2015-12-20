@@ -1,10 +1,15 @@
 var natural = require('natural');
+var _ = require('underscore');
 
 var text = "There was a huge fire in my house this morning. Thanks to the fire fighter named John, I got out alive!";
 
 // Tokenizer Example
 var tokenizer = new natural.WordTokenizer();
 var tokens = tokenizer.tokenize(text.toLowerCase());
+
+// Remove stop words
+var stopWords = ['a', 'the'];
+tokens = _.difference(tokens, stopWords);
 
 // Stemming Example
 // natural.PorterStemmer.attach();
