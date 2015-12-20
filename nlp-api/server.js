@@ -1,12 +1,10 @@
-var natural = require('natural');
-var _ = require('underscore');
+var nlp = require('nlp_compromise');
+// var _ = require('underscore');
 var restify = require('restify');
 
 // Custom modules ---------------------------
 var sw = require('./stop-words.js');
 
-// Declare nlp tokenizer
-var tokenizer = new natural.WordTokenizer();
 
 // Default serve config
 var server = restify.createServer({
@@ -20,16 +18,18 @@ server.use(restify.bodyParser());
 server.get('/nlp/:text', function (req, res, next) {
   // Store user provied text
   var text = req.params.text;
-  // Tokenize the text
-  var tokens = tokenizer.tokenize(text.toLowerCase());
+
+
   // Remove stop words
-  tokens = _.difference(tokens, sw.stopWords);
+  // tokens = _.difference(tokens, sw.stopWords);
+
+
   // Calculate the popularity of each tokens
-  var counts = {};
-  for (var i = 0; i < tokens.length; i++) {
-      counts[tokens[i]] = 1 + (counts[tokens[i]] || 0);
-  }
-  res.send(counts);
+  // var counts = {};
+  // for (var i = 0; i < tokens.length; i++) {
+  //     counts[tokens[i]] = 1 + (counts[tokens[i]] || 0);
+  // }
+  res.send("test");
   return next();
 });
 

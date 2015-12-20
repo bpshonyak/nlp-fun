@@ -9,12 +9,11 @@
   "keywords": [
     "nlp",
     "node",
-    "natural"
   ],
   "author": "Bogdan Pshonyak",
   "license": "ISC",
   "dependencies": {
-    "natural": "^0.2.1",
+    "nlp_compromise": "^1.1.5",
     "restify": "^4.0.3"
   }
 }
