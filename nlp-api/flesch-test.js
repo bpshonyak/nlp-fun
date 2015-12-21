@@ -14,16 +14,15 @@ var test = function(text){
 
   // Count words
   for(var i = 0; i < s_length; i++){
-    debugger;
     tokens += sentences[i].tokens.length;
     console.log("Words in sentence " + i + ": " + sentences[i].tokens.length);
     // Count syllabels
-    for(var q = 0; q < sentences[i].tokens.length - 1; i++){
-      syllables += nlp.syllables(sentences[i].tokens[q].normalised).length;
-      console.log(sentences[i].tokens[q].normalised + " has " + nlp.syllables(sentences[i].tokens[q].normalised).length + " syllabels.");
-      // syllables += 3;
+    for(var q = 0; q < sentences[i].tokens.length; q++){
+        syllables += nlp.syllables(sentences[i].tokens[q].normalised).length;
+        console.log(sentences[i].tokens[q].normalised + " has " + nlp.syllables(sentences[i].tokens[q].normalised).length + " syllabels.");
+        // syllables += 3;
     }
-  }
+}
 
   console.log("Words: " + tokens);
   console.log("Syllables: " + syllables);
