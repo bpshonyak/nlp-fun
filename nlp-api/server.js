@@ -4,7 +4,7 @@ var restify = require('restify');
 
 // Custom modules ---------------------------
 var sw = require('./stop-words.js');
-
+var flesch = require('./flesch-test.js'); // Depends on nlp_compromise
 
 // Default serve config
 var server = restify.createServer({
@@ -19,17 +19,23 @@ server.get('/nlp/:text', function (req, res, next) {
   // Store user provied text
   var text = req.params.text;
 
-
   // Remove stop words
   // tokens = _.difference(tokens, sw.stopWords);
-
 
   // Calculate the popularity of each tokens
   // var counts = {};
   // for (var i = 0; i < tokens.length; i++) {
   //     counts[tokens[i]] = 1 + (counts[tokens[i]] || 0);
   // }
-  res.send("test");
+
+  // Tokenzise sentence
+  // nlp.tokenize(text)
+
+  // Count sentences
+  // nlp.tokenize(text).length
+
+  console.log(flesch.test(text));
+  res.send("completed");
   return next();
 });
 
