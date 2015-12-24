@@ -1,6 +1,10 @@
 // Author: Bogdan Pshonyak
 
+// TODO: Process text before running algorithm (ex. check for quotes)
+
 var nlp = require('nlp_compromise');
+var _ = require('underscore');
+var sw = require('./stop-words.js');
 
 var process = function(text){
 
@@ -21,11 +25,22 @@ var process = function(text){
             tokens.push(sentences[i].tokens[q].normalised);
         }
     }
+
+    // Remove stop words
+    var p_tokens = _.difference(tokens, sw.stopWords);
+
+    // Calculate the popularity of each token
+    var counts = {};
+    for (var i = 0; i < p_tokens.length; i++) {
+        counts[p_tokens[i]] = 1 + (counts[p_tokens[i]] || 0);
+    }
+
     return {
         sentences: s_length,
         total_words: words,
         syllables: syllables,
-        tokens: tokens
+        tokens: tokens,
+        popularity: counts
     }
 };
 
